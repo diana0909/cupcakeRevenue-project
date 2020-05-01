@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load get_index %}
+
+{% block content %}
+  <table
+    id="table"
+    data-toggle="table"
+    data-height="460"
+    data-pagination="true"
+    data-url="json/data1.json"
+    class="table table-striped align-middle">
+    <thead class="bg-info">
+      <tr class="text-center">
+        <th>Week</th>
+        <th>Basic cupcakes sold</th>
+        <th>Deluxe cupcakes sold</th>
+        <th>Totaly earned</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for week,basic,delux,total in context %}
+        <tr class="text-center">
+          <td>{{ week }}</td>
+          <td>{{ basic }}</td>
+          <td>{{ delux }}</td>
+          <td>{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#table').DataTable({'searching': true, 'ordering': false,});
+  } );
+</script>
+
+
+{% endblock %}

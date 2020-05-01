@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="conteiner">
+  {% if error %}
+  <div class="alert alert-warning alert-dismissable" role="alert">
+    <button class="close" data-dismiss="alert">
+      <small><sup>X</sup></small>
+    </button>
+    <p>{{ error }}</p>
+    {% endif %}
+  </div>
+  <div class="conteiner d-inline-flex p-2 justify-content-center border shadow-lg p-4 mb-5 bg-primary rounded text-light">
+    <div class="text-left text-light">
+      <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        Basic cupcakes sold:
+        <br />
+        <input type="text" style="width: 15em" name="basic" />
+        <br /> <br />
+        Deluxe cupcakes sold:
+        <br />
+        <input type="text" style="width: 15em" name="delux" />
+        <br /> <br />
+        Date:
+        <br />
+        <input type="date" style="width: 15em" name="dates" />
+        <br /><br />
+        <input class="btn btn-info" style="width: 15em" type="submit" name="submit" value="ADD">
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

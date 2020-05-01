@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-striped">
+  <thead class="bg-info">
+    <tr class="text-center">
+      <th scope="col">Year</th>
+      <th scope="col">Totaly basic sold</th>
+      <th scope="col">Totaly deluxe sold</th>
+      <th scope="col">Totaly earned</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for y, b, d, t in context %}
+    <tr class="text-center">
+      <td scope="col"> {{ y }}</td>
+      <td scope="col"> {{ b }} </td>
+      <td scope="col"> {{ d }} </td>
+      <td scope="col"> {{ t}} </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br /> <br />
+<div class="justify-content-center">
+  <div id="chart"></div> <br><br>
+  <div id="chart_tot"></div>
+</div>
+
+<script>
+  Highcharts.chart('chart', {{ chart|safe }});
+  Highcharts.chart('chart_tot', {{ chart_tot|safe }});
+</script>
+{% endblock %}

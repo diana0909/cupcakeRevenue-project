@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load get_index %}
+
+{% block content %}
+{% for y in years %}
+<table class="table table-striped align-middle">
+  <thead class="bg-info">
+    <tr class="text-center">
+      <th scope="col"> Year: {{ y }}</th>
+      {% for m in months %}
+      <th scope="col"> {{ m }} </th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center">
+      <th scope="col"> Basic cupcakes sold: </th>
+      {% for b in basic_monthly|index:forloop.counter0 %}
+      <td scope="col" class="align-middle"> {{ b }} </td>
+      {% endfor %}
+    </tr>
+    <tr class="text-center">
+      <th scope="col"> Deluxe cupcakes sold: </th>
+      {% for d in deluxe_monthly|index:forloop.counter0 %}
+      <td scope="col" class="align-middle"> {{ d }} </td>
+      {% endfor %}
+    </tr>
+    <tr class="text-center">
+      <th scope="col">  Totaly earned: </th>
+      {% for t in totaly_monthly|index:forloop.counter0 %}
+      <td scope="col" class=""> {{ t }} </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+<br />
+{% endfor %}
+<div style="text-align: center">
+  {% for chart in charts %}
+    <div class="col-9" id="{{forloop.counter0}}" style="display: inline-block"></div>
+    <br /> <br>
+    <script>
+      Highcharts.chart('{{forloop.counter0}}', {{ chart|safe }});
+    </script>
+  {% endfor %}
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-9" id="chart_tot"></div>
+  <script>
+    Highcharts.chart('chart_tot', {{ chart_tot|safe }});
+  </script>
+</div>
+
+
+
+{% endblock %}

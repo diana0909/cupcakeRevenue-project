@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load get_index %}
+
+{% block content %}
+<table
+  id="table"
+  data-toggle="table"
+  data-height="460"
+  data-pagination="true"
+  data-url="json/data1.json"
+  class="table table-striped align-middle">
+  <thead class="bg-info">
+    <tr class="text-center">
+      <th>Day</th>
+      <th>Basic cupcakes sold</th>
+      <th>Deluxe cupcakes sold</th>
+      <th>Totaly earned</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for day,b,d,t in context %}
+    <tr class="text-center">
+      <td>{{ day|date:"d. F Y." }}</td>
+      <td>{{b}}</td>
+      <td>{{d}}</td>
+      <td>{{t}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#table').DataTable({'ordering': false});
+  } );
+</script>
+
+
+{% endblock %}
